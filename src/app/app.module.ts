@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 
 import { CabecalhoComponent } from './componentes/cabecalho/cabecalho.component';
 import { MainComponent } from './componentes/main/main.component';
-import { RodapeComponent } from './componentes/rodape/rodape.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
@@ -18,7 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     CabecalhoComponent,
     MainComponent,
-    RodapeComponent
+
   ],
   imports: [
     BrowserModule,

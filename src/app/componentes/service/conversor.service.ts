@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http'
 })
 export class ConversorService {
 
-  private readonly API = 'https://exchangerate.host/'
+  private readonly API = "https://exchangerate.host/";
   constructor( private http: HttpClient) { }
 
   listar(){
