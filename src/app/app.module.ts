@@ -5,8 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTableModule } from '@angular/material/table';
 import { ConversorModule } from './conversor/conversor.module';
 
 
@@ -22,8 +20,6 @@ import { ConversorModule } from './conversor/conversor.module';
     ConversorModule,
     HttpClientModule,
     FormsModule,
-    MatToolbarModule,
-    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

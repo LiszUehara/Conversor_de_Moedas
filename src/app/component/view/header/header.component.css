@@ -1,0 +1,9 @@
+.menu{
+  list-style: none;
+  display: flex;
+
+}
+
+.item {
+  padding: 20px;
+}

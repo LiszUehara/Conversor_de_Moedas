@@ -1,9 +1,21 @@
-table {
+
+
+.container{
   width: 100%;
-  background-color: #c2185b;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: end;
 }
 
-.container
-{
-  padding: 50px 80px;
+
+
+
+.titulo{
+  font-size: 5rem;
+  padding: 80px;
+  margin-top: 20px;
+  color:  #c2185b;
+
 }
+
