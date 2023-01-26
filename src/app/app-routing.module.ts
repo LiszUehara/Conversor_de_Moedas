@@ -1,17 +1,11 @@
-import { MainComponent } from './componentes/main/main.component';
-import { NgModule, Component } from '@angular/core';
+import { HomeComponent } from './component/view/home/home.component';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'MainComponent',
-    pathMatch: 'full'
-  },
-
-  {
-    path: 'Inicial',
-    component: MainComponent
+    component: HomeComponent
   }
 ];
 

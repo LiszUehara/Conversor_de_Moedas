@@ -3,31 +3,27 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { CabecalhoComponent } from './componentes/cabecalho/cabecalho.component';
-import { MainComponent } from './componentes/main/main.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatButtonModule} from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTableModule } from '@angular/material/table';
+import { ConversorModule } from './conversor/conversor.module';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    CabecalhoComponent,
-    MainComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
+    ConversorModule,
     HttpClientModule,
+    FormsModule,
     MatToolbarModule,
-    MatMenuModule,
-    MatButtonModule
-
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
