@@ -1,6 +1,7 @@
 
 <app-header></app-header>
 <app-home></app-home>
-<app-conversor></app-conversor>
-<app-historico></app-historico>
+<app-conversor (aoConverter)="enviar($event)"></app-conversor>
+
+<app-historico [historico]="moedas"></app-historico>
 <app-footer></app-footer>

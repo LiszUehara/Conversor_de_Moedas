@@ -1,7 +1,16 @@
+.container{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  background-color: black;
+
+}
+
 .example-form {
   min-width: 150px;
   max-width: 500px;
-  width: 100%;
+
 }
 
 .example-full-width {
@@ -9,12 +18,11 @@
 }
 
 .formulario {
-  background-color: white;
+  background-color: black;
   padding: 16px;
   border-radius: 4px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-   align-items: center;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+  align-items: center;
 }
 
 .form-field {
@@ -58,4 +66,5 @@
 .titulo{
     text-transform: capitalize;
     color: var(--primary);
+    text-align: center;
 }

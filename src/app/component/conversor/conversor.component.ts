@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-conversor',
@@ -7,14 +7,25 @@ import { Component } from '@angular/core';
 })
 export class ConversorComponent {
 
-  origem: number;
-  destino: number;
+  @Output() aoConverter = new EventEmitter<any>();
+
+  origem: string;
+  destino: string;
   valor: number;
 
-  transferir(){
+  enviarDados(){
     console.log("funcionou?");
-    console.log(this.origem);
-    console.log(this.destino);
-  }
+    const valorEmitir = {origem: this.origem, destino: this.destino, valor: this.valor};
+    this.aoConverter.emit(valorEmitir);
+
+    this.limparCampos()
+
+}
+
+  limparCampos() {
+    this.origem = "";
+    this.destino = "";
+    this.valor = 0;
+}
 
 }

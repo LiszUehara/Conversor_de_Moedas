@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'conversor-de-moedas';
+
+  moedas: any;
+
+  enviar($event){
+    console.log($event);
+    this.moedas = $event;
+  }
 }

@@ -5,6 +5,8 @@
   flex-direction: column;
   text-align: center;
   background-color: #000000;
+  justify-content: center;
+  align-items: center;
 }
 
 .titulo{
@@ -21,7 +23,6 @@
   color:  #c2185b;
 }
 
-.paragrafo b
-{
+.paragrafo b {
   color: #fff;
 }
