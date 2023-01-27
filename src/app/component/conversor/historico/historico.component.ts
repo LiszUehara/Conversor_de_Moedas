@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class HistoricoComponent {
 
-  @Input() historico:any;
+  @Input() historico:any[];
 
 }

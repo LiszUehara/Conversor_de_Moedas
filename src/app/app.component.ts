@@ -8,10 +8,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'conversor-de-moedas';
 
-  moedas: any;
+  moedas: any[] = [];
 
   enviar($event){
     console.log($event);
-    this.moedas = $event;
+    const moeda = {...$event, data: new Date()};
+    this.moedas.push(moeda);
   }
 }

@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { ConversorComponent } from '../component/conversor/conversor.component';
 import { FormsModule } from '@angular/forms';
+import {MatTableModule} from '@angular/material/table'
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FormsModule } from '@angular/forms';
     MatToolbarModule,
     MatButtonModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatTableModule
 
   ],
   exports: [

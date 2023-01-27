@@ -1,3 +1,23 @@
-<p>Origem: {{historico.origem}}</p>
-<p>Destino: {{historico.destino}}</p>
-<p>Valor: {{historico.valor}}</p>
+
+
+
+
+
+<table>
+  <thead>
+    <th>Data</th>
+    <th>Origem</th>
+    <th>Destino</th>
+    <th>Valor</th>
+
+  </thead>
+
+  <tbody >
+    <tr *ngFor="let item of historico">
+      <td>{{item?.data | date: "short"}}</td>
+      <td>{{item?.origem}}</td>
+      <td>{{item?.destino}}</td>
+      <td>{{item?.valor}}</td>
+  </tr>
+  </tbody>
+</table>
