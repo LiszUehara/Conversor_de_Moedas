@@ -1,0 +1,29 @@
+
+
+<section class="container">
+
+
+
+<form class="example-form formulario form-field" (ngSubmit)="transferir()">
+  <h2 class="titulo">Conversor!</h2>
+  <mat-form-field  class="example-full-width form-field">
+    <mat-label class="label">Moeda de Origem</mat-label>
+    <input class="input" type="number" matInput placeholder="BRL" [(ngModel)]="origem" name="origem">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label class="label">Moeda de Destino</mat-label>
+    <input class="input" type="number" matInput placeholder="BRL" [(ngModel)]="destino" name="destino">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label class="label">Valor</mat-label>
+    <input class="input" type="number" matInput placeholder="1" [(ngModel)]="valor" name="valor">
+  </mat-form-field>
+
+  <button mat-button color="primary" type="submit" class="">Converter</button>
+
+</form>
+
+</section>
+
