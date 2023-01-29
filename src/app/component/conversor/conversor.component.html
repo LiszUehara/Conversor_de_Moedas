@@ -6,14 +6,24 @@
 
 <form class="example-form formulario form-field" (ngSubmit)="enviarDados()">
   <h2 class="titulo">Conversor</h2>
-  <mat-form-field  class="example-full-width form-field">
+
+
+  <mat-form-field class="example-full-width">
     <mat-label class="label">Moeda de Origem</mat-label>
-    <input class="input" type="text" matInput placeholder="BRL" [(ngModel)]="origem" name="origem">
+  <mat-select [(value)]="selected" [(ngModel)]="origem" name="origem">
+    <mat-option *ngFor="let moeda of moedasA" [value]="moeda">
+      {{moeda}}
+    </mat-option>
+  </mat-select>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <mat-label class="label">Moeda de Destino</mat-label>
-    <input class="input" type="text" matInput placeholder="BRL" [(ngModel)]="destino" name="destino">
+    <mat-label class="label">Moeda de Origem</mat-label>
+  <mat-select [(value)]="selected" [(ngModel)]="destino" name="destino" >
+    <mat-option *ngFor="let moeda of moedasA" [value]="moeda">
+      {{moeda}}
+    </mat-option>
+  </mat-select>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
@@ -21,9 +31,12 @@
     <input class="input" type="number" matInput placeholder="1" [(ngModel)]="valor" name="valor">
   </mat-form-field>
 
+
+
   <button mat-button color="primary" type="submit" class="">Converter</button>
 
 </form>
 
 </section>
+
 

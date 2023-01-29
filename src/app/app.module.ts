@@ -5,8 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { ConversorModule } from './conversor/conversor.module';
-import {MatTableModule} from '@angular/material/table'
+import {MatSelectModule} from '@angular/material/select';
 import localePt from '@angular/common/locales/pt'
 import { registerLocaleData } from '@angular/common';
 
@@ -22,7 +23,8 @@ registerLocaleData(localePt, 'pt');
     ConversorModule,
     HttpClientModule,
     FormsModule,
-
+    MatSelectModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'}

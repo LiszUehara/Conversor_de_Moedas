@@ -12,7 +12,8 @@ export class ConversorComponent {
   origem: string;
   destino: string;
   valor: number;
-
+  selected: string = 'option 2';
+  moedasA: string[] = ["a","b","c"];
   enviarDados(){
     console.log("funcionou?");
     const valorEmitir = {origem: this.origem, destino: this.destino, valor: this.valor};
