@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from '../component/view/home/home.component';
 import { HeaderComponent } from '../component/view/header/header.component';
+
 import { HistoricoComponent } from '../component/conversor/historico/historico.component';
 import { FooterComponent } from '../component/view/footer/footer.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -11,6 +13,8 @@ import { ConversorComponent } from '../component/conversor/conversor.component';
 import { FormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MoedaService } from './moedas.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,7 @@ import {MatSelectModule} from '@angular/material/select';
     HeaderComponent,
     HistoricoComponent,
     FooterComponent,
-    ConversorComponent
+    ConversorComponent,
 
   ],
   imports: [
@@ -28,7 +32,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatInputModule,
     FormsModule,
     MatTableModule,
-    MatSelectModule
+    MatSelectModule,
+    MatPaginatorModule
 
   ],
   exports: [
