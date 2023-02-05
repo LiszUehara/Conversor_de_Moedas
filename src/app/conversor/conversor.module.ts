@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MoedaService } from './moedas.service';
+import { MoedaService } from './services/moedas.service';
 
 @NgModule({
   declarations: [

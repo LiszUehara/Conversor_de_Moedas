@@ -1,7 +1,9 @@
+import { Moeda } from './../../conversor/conversor/models/moeda.models';
+import { ConversorService } from './../../conversor/services/conversor.service';
 import { ConversaoFinal } from './../../conversor/conversor/models/conversao-final.model';
 import { Conversao } from './../../conversor/conversor/models/conversao.model';
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
-import { Moeda } from 'src/app/conversor/conversor/models/moeda.models';
+import { MoedaService } from 'src/app/conversor/services/moedas.service';
 
 @Component({
   selector: 'app-conversor',
@@ -13,38 +15,48 @@ export class ConversorComponent {
 
   @Output() aoConverter = new EventEmitter<any>();
 
-  constructor(){
-
+  constructor(private ConversorService: ConversorService,  private moedaService: MoedaService){
+    this.moedaService.getMoedas().subscribe((data: any) => {
+      let elements: any[] = Object.values(data.symbols)
+      elements.forEach(element => {
+        let novaMoeda = new Moeda(element.code,element.description)
+        this.moedasA.push(novaMoeda);
+      });
+});
   }
 
-  conversao_inicial: Conversao;
-  retorno: ConversaoFinal;
 
 
-  origem: string;
-
-  destino: string;
-  valor: number;
-  base: string;
-  rates: any;
-
-  selected: string = 'option 2';
-  moedasA: string[] = ["a","b","c"];
-
+  selected: string = 'BRL';
+  selected2: string = 'USD';
+  moedasA: Moeda[] = [];
+  conversao: Conversao;
+  conversaoFinal: ConversaoFinal;
 
   enviarDados(){
-    const valorEmitir = {origem: this.origem, destino: this.destino, valor: this.valor, base: this.base};
-    this.aoConverter.emit(valorEmitir);
+    this.ConversorService.converter(new Conversao(this.selected,this.selected2,this.valor)).subscribe((data: any) => {
+      const convertido = new ConversaoFinal(data.info.rate,data.date,data.result);
+      console.log(data);
+      console.log(convertido);
 
-    this.limparCampos()
-    
+      const valorEmitir = {origem: this.selected, destino: this.selected2, valor: this.valor, base: convertido.base};
+      this.aoConverter.emit(valorEmitir);
+      this.limparCampos();
+    })
+
 }
+
 
 
   limparCampos() {
-    this.origem = "";
-    this.destino = "";
-    this.valor = 0;
+    //this.conversao.from = "";
+    //this.conversao.to = "";
+    //this.conversao.valor = 0;
 }
 
+
+
+
 }
+
+

@@ -1,9 +1,9 @@
 import { Moeda } from './../../../conversor/conversor/models/moeda.models';
 import { Component, OnInit } from '@angular/core';
-import { MoedaService } from 'src/app/conversor/moedas.service';
+import { MoedaService } from 'src/app/conversor/services/moedas.service';
 import {AfterViewInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
+import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
@@ -53,6 +53,7 @@ export class ListarComponent implements OnInit{
 });
 }
 
+
 applyFilter(event: Event) {
   const filterValue = (event.target as HTMLInputElement).value;
   this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -61,6 +62,31 @@ applyFilter(event: Event) {
     this.dataSource.paginator.firstPage();
   }
 }
+
+sortData(sort: Sort) {
+  const data = this.listadeMoedas.slice();
+  if (!sort.active || sort.direction === '') {
+    this.listadeMoedas = data;
+    return;
+  }
+
+  this.listadeMoedas = data.sort((a, b) => {
+    const isAsc = sort.direction === 'asc';
+    switch (sort.active) {
+      case 'sigla':
+        return this.compare(a.sigla, b.sigla, isAsc);
+      case 'descricao':
+        return this.compare(a.descricao, b.descricao, isAsc);
+      default:
+        return 0;
+    }
+  });
+}
+
+compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}
+
 }
 
 

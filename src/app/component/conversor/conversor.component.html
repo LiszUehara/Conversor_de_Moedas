@@ -8,17 +8,17 @@
   <mat-form-field class="example-full-width">
     <mat-label class="label">Moeda de Origem</mat-label>
   <mat-select [(value)]="selected" [(ngModel)]="origem" name="origem">
-    <mat-option *ngFor="let moeda of moedasA" [value]="moeda">
-      {{moeda}}
+    <mat-option *ngFor="let moeda of moedasA" [value]="moeda.sigla">
+      {{moeda.sigla}}
     </mat-option>
   </mat-select>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
     <mat-label class="label">Moeda de Origem</mat-label>
-  <mat-select [(value)]="selected" [(ngModel)]="destino" name="destino" >
-    <mat-option *ngFor="let moeda of moedasA" [value]="moeda">
-      {{moeda}}
+  <mat-select [(value)]="selected2" [(ngModel)]="destino" name="destino" >
+    <mat-option *ngFor="let moeda of moedasA" [value]="moeda.sigla">
+      {{moeda.sigla}}
     </mat-option>
   </mat-select>
   </mat-form-field>

@@ -1,21 +1,21 @@
 
 <mat-form-field>
   <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. BRL" #input>
 </mat-form-field>
 
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource" matSort>
+  <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
 
     <!-- Sigla Column -->
     <ng-container matColumnDef="Sigla">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Sigla </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="sigla"> Sigla </th>
       <td mat-cell *matCellDef="let row"> {{row.sigla}} </td>
     </ng-container>
 
     <!-- Descrição Column -->
     <ng-container matColumnDef="Descricao">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Descrição </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="descricao"> Descrição </th>
       <td mat-cell *matCellDef="let row"> {{row.descricao}} </td>
     </ng-container>
 
