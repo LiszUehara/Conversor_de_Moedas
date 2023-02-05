@@ -1,3 +1,4 @@
+import { TranferenciaService } from './../../conversor/services/tranferencia.service';
 import { Moeda } from './../../conversor/conversor/models/moeda.models';
 import { ConversorService } from './../../conversor/services/conversor.service';
 import { ConversaoFinal } from './../../conversor/conversor/models/conversao-final.model';
@@ -11,11 +12,15 @@ import { MoedaService } from 'src/app/conversor/services/moedas.service';
   styleUrls: ['./conversor.component.css']
 })
 export class ConversorComponent {
-  [x: string]: any;
+
 
   @Output() aoConverter = new EventEmitter<any>();
 
-  constructor(private ConversorService: ConversorService,  private moedaService: MoedaService){
+  constructor(
+    private ConversorService: ConversorService,
+    private moedaService: MoedaService,
+    private TranferenciaService: TranferenciaService){
+
     this.moedaService.getMoedas().subscribe((data: any) => {
       let elements: any[] = Object.values(data.symbols)
       elements.forEach(element => {
@@ -26,20 +31,25 @@ export class ConversorComponent {
   }
 
 
-
-  selected: string = 'BRL';
-  selected2: string = 'USD';
+  valor: number;
+  from: string = 'BRL';
+  to: string = 'USD';
   moedasA: Moeda[] = [];
   conversao: Conversao;
   conversaoFinal: ConversaoFinal;
 
   enviarDados(){
-    this.ConversorService.converter(new Conversao(this.selected,this.selected2,this.valor)).subscribe((data: any) => {
+    this.ConversorService.converter(new Conversao(this.from,this.to,this.valor)).subscribe((data: any) => {
       const convertido = new ConversaoFinal(data.info.rate,data.date,data.result);
       console.log(data);
       console.log(convertido);
 
-      const valorEmitir = {origem: this.selected, destino: this.selected2, valor: this.valor, base: convertido.base};
+      const valorEmitir = {origem: this.from, destino: this.to, valor: this.valor, rates: convertido.base, resultado: convertido.rates };
+
+      this.TranferenciaService.adicionar(valorEmitir);
+
+
+
       this.aoConverter.emit(valorEmitir);
       this.limparCampos();
     })
@@ -49,9 +59,9 @@ export class ConversorComponent {
 
 
   limparCampos() {
-    //this.conversao.from = "";
-    //this.conversao.to = "";
-    //this.conversao.valor = 0;
+    this.from = "";
+    this.to = "";
+    this.conversao.valor = 0;
 }
 
 

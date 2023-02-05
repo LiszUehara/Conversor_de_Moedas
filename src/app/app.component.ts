@@ -1,3 +1,4 @@
+import { TranferenciaService } from './conversor/services/tranferencia.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,13 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  [x: string]: any;
   title = 'conversor-de-moedas';
+
+
+
 
   moedas: any[] = [];
 
-  enviar($event){
-    console.log($event);
-    const moeda = {...$event, data: new Date()};
-    this.moedas.push(moeda);
-  }
+
 }
