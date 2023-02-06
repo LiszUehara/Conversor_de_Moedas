@@ -2,10 +2,11 @@
 <mat-toolbar color="primary">
   <span>Conversor de Moedas</span>
   <ul class="menu">
-    <li class="item"><a>Home</a></li>
-    <li class="item"><a>Conversão</a></li>
-    <li class="item"><a>Listar Moedas</a></li>
-    <li class="item"><a>Historico</a></li>
+    <li class="item"><a [routerLink]="['/home']" routerLinkActive="router-link-active" >Home</a></li>
+    <li class="item"><a [routerLink]="['/conversor']">Conversão</a></li>
+    <li class="item"><a [routerLink]="['/listarMoedas']">Listar Moedas</a></li>
+    <li class="item"><a [routerLink]="['/historico']">Historico</a></li>
   </ul>
+
 </mat-toolbar>
 

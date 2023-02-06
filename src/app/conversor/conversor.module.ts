@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -26,6 +27,7 @@ import { MoedaService } from './services/moedas.service';
 
   ],
   imports: [
+    RouterModule,
     CommonModule,
     MatToolbarModule,
     MatButtonModule,

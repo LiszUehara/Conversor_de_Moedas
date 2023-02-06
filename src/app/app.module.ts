@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,6 +25,7 @@ registerLocaleData(localePt, 'pt');
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     AppRoutingModule,
     ConversorModule,
     HttpClientModule,
