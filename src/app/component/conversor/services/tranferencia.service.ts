@@ -18,10 +18,15 @@ export class TranferenciaService {
    adicionar(historico: any){
     this.adicionarData(historico);
     this.listarHistorico.push(historico);
+
    }
 
    private adicionarData(transferencia: any){
     transferencia.data = new Date();
+   }
+
+   recuperar(){
+    return this.listarHistorico.lastIndexOf(this.historico);
    }
 
 }

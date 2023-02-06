@@ -1,10 +1,12 @@
-import { TranferenciaService } from './../../conversor/services/tranferencia.service';
+import { TranferenciaService } from './services/tranferencia.service';
 import { Moeda } from './../../conversor/conversor/models/moeda.models';
-import { ConversorService } from './../../conversor/services/conversor.service';
+import { ConversorService } from './services/conversor.service';
 import { ConversaoFinal } from './../../conversor/conversor/models/conversao-final.model';
 import { Conversao } from './../../conversor/conversor/models/conversao.model';
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
-import { MoedaService } from 'src/app/conversor/services/moedas.service';
+import { MoedaService } from 'src/app/component/conversor/services/moedas.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalRespostaComponent } from '../view/modal-resposta/modal-resposta.component';
 
 @Component({
   selector: 'app-conversor',
@@ -12,6 +14,7 @@ import { MoedaService } from 'src/app/conversor/services/moedas.service';
   styleUrls: ['./conversor.component.css']
 })
 export class ConversorComponent {
+  [x: string]: any;
 
 
   @Output() aoConverter = new EventEmitter<any>();
@@ -19,7 +22,8 @@ export class ConversorComponent {
   constructor(
     private ConversorService: ConversorService,
     private moedaService: MoedaService,
-    private TranferenciaService: TranferenciaService){
+    private TranferenciaService: TranferenciaService,
+    public dialog: MatDialog){
 
     this.moedaService.getMoedas().subscribe((data: any) => {
       let elements: any[] = Object.values(data.symbols)
@@ -29,6 +33,7 @@ export class ConversorComponent {
       });
 });
   }
+
 
 
   valor: number;
@@ -64,9 +69,17 @@ export class ConversorComponent {
     this.conversao.valor = 0;
 }
 
+openDialog(): void {
+  const dialogRef = this.dialog.open(ModalRespostaComponent, {
 
+  });
 
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
 
+  });
 }
+}
+
 
 

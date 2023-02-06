@@ -3,8 +3,8 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Conversao } from './../conversor/models/conversao.model';
-import { ConversaoFinal } from '../conversor/models/conversao-final.model';
+import { Conversao } from '../../../conversor/conversor/models/conversao.model';
+import { ConversaoFinal } from '../../../conversor/conversor/models/conversao-final.model';
 
 @Injectable({
   providedIn: 'root'

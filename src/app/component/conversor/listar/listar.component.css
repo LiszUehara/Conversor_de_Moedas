@@ -10,3 +10,9 @@ table {
 td, th {
   width: 25%;
 }
+
+.container{
+  width: auto;
+  height: 100%;
+  margin-top: 50px;
+}

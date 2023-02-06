@@ -1,6 +1,6 @@
 import { Moeda } from './../../../conversor/conversor/models/moeda.models';
 import { Component, OnInit } from '@angular/core';
-import { MoedaService } from 'src/app/conversor/services/moedas.service';
+import { MoedaService } from 'src/app/component/conversor/services/moedas.service';
 import {AfterViewInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort, Sort} from '@angular/material/sort';

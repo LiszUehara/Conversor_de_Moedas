@@ -15,7 +15,10 @@ import { FormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MoedaService } from './services/moedas.service';
+import { MoedaService } from '../component/conversor/services/moedas.service';
+import { NumeroDirective } from './directives/numero.directive';
+import { PositivoDirective } from './directives/positivo.directive';
+import { ModalRespostaComponent } from '../component/view/modal-resposta/modal-resposta.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { MoedaService } from './services/moedas.service';
     HistoricoComponent,
     FooterComponent,
     ConversorComponent,
+    NumeroDirective,
+    PositivoDirective,
+    ModalRespostaComponent,
 
   ],
   imports: [

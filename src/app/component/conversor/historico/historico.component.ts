@@ -1,4 +1,4 @@
-import { TranferenciaService } from './../../../conversor/services/tranferencia.service';
+import { TranferenciaService } from '../services/tranferencia.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({

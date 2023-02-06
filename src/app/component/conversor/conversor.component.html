@@ -1,3 +1,5 @@
+
+
 <section class="container">
 
 <form class="example-form formulario form-field" (ngSubmit)="enviarDados()">
@@ -25,14 +27,19 @@
 
   <mat-form-field class="example-full-width">
     <mat-label class="label">Valor</mat-label>
-    <input class="input" type="number" matInput placeholder="1" [(ngModel)]="valor" name="valor">
+    <input class="input" type="number" matInput placeholder="1" [(ngModel)]="valor" name="valor" min="0" numero positivo>
   </mat-form-field>
 
 
 
-  <button mat-button color="primary" type="submit">Converter</button>
+
+  <button mat-button color="primary" type="submit" mat-raised-button (click)="openDialog()">Converter</button>
 
 </form>
+
+<ng-template #erro>
+  <p>Digite um valor valido</p>
+</ng-template>
 
 </section>
 

@@ -1,4 +1,4 @@
-import { TranferenciaService } from './conversor/services/tranferencia.service';
+import { TranferenciaService } from './component/conversor/services/tranferencia.service';
 import { Component } from '@angular/core';
 
 @Component({

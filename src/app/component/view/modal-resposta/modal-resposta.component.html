@@ -1,0 +1,21 @@
+
+<h1 mat-dialog-title>Resultado</h1>
+<div mat-dialog-content class="container">
+
+
+
+  <div  *ngFor="let item of resultados">
+
+    <h1>O valor de: {{item?.valor}} da moeda {{item?.origem}} para {{item?.destino}}<br> equivale à {{item?.resultado}}<br> cotação {{item?.rates}} </h1>
+
+    </div>
+
+
+
+<div mat-dialog-actions>
+  <button mat-button (click)="cancelar()">Fechar</button>
+</div>
+
+
+</div>
+

@@ -15,6 +15,7 @@ import { registerLocaleData } from '@angular/common';
 import { ListarComponent } from './component/conversor/listar/listar.component';
 import { MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import {MatDialogModule} from '@angular/material/dialog';
 
 registerLocaleData(localePt, 'pt');
 @NgModule({
@@ -34,7 +35,8 @@ registerLocaleData(localePt, 'pt');
     BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'}
