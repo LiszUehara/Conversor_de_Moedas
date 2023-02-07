@@ -46,6 +46,7 @@ export class ListarComponent implements OnInit{
         this.sigla = element.code;
         this.descricao = element.description
         //console.log(this.sigla + '-' + this.descricao);
+        
         this.dataSource = new MatTableDataSource(this.listadeMoedas);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

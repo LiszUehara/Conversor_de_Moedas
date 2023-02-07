@@ -1,22 +1,54 @@
 
 
-<table>
-  <thead>
-    <th>Data</th>
-    <th>Origem</th>
-    <th>Destino</th>
-    <th>Valor</th>
-    <th>Taxa</th>
 
-  </thead>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="historico">
 
-  <tbody >
-    <tr *ngFor="let item of historico">
-      <td>{{item?.data | date: "short"}}</td>
-      <td>{{item?.origem}}</td>
-      <td>{{item?.destino}}</td>
-      <td>{{item?.valor}}</td>
-      <td>{{item?.taxa}}</td>
-  </tr>
-  </tbody>
-</table>
+    <!-- Position Column -->
+
+    <ng-container matColumnDef="Data">
+      <th mat-header-cell *matHeaderCellDef> Data </th>
+      <td mat-cell *matCellDef="let historico"> {{historico?.data | date: "short"}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="Origem">
+      <th mat-header-cell *matHeaderCellDef> Origem </th>
+      <td mat-cell *matCellDef="let historico"> {{historico?.origem}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Destino">
+      <th mat-header-cell *matHeaderCellDef> Destino </th>
+      <td mat-cell *matCellDef="let historico">{{historico?.destino}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Valor">
+      <th mat-header-cell *matHeaderCellDef> Valor de Entrada</th>
+      <td mat-cell *matCellDef="let historico">{{historico?.valor}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Saida">
+      <th mat-header-cell *matHeaderCellDef> Valor de Saida</th>
+      <td mat-cell *matCellDef="let historico">{{historico?.resultado}} </td>
+    </ng-container>
+
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Taxa">
+      <th mat-header-cell *matHeaderCellDef> Taxa </th>
+      <td mat-cell *matCellDef="let historico">{{historico?.rates}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
+
+
