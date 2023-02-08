@@ -15,13 +15,13 @@ import { ModalRespostaComponent } from '../view/modal-resposta/modal-resposta.co
 })
 export class ConversorComponent {
 
-  ultimoValor: any;
-  valor: number;
+
+  valor: number = 1;
   from: string = 'BRL';
   to: string = 'USD';
   moedasA: Moeda[] = [];
-  icon: boolean;
-  sig: string = 'USD';
+  icon: boolean = true;
+
 
   conversao: Conversao;
   conversaoFinal: ConversaoFinal;
@@ -37,63 +37,78 @@ export class ConversorComponent {
       elements.forEach(element => {
         let novaMoeda = new Moeda(element.code,element.description);
         this.moedasA.push(novaMoeda);
-        this.testarDolar();
       });
 });
 
 
 
 
+
   }
-
-  testarDolar(){
-
-    this.ConversorService.converter(new Conversao(this.from, 'USD', this.valor )).subscribe((data: any) => {
-      const dolarConvert = new ConversaoFinal(data.info.rate, data.date, data.result);
-
-
-      console.log("isto é o dolarConvert", dolarConvert);
-
-      if(dolarConvert.resultado >= 10000){
-
-        this.icon = true;
-        console.log("entra no if");
-      } else {
-        this.icon = false;
-        console.log("entra no else");
-      }
-
-
-    });
-  }
-
-
 
 
   enviarDados(){
+
     this.ConversorService.converter(new Conversao(this.from,this.to,this.valor)).subscribe((data: any) => {
+
+
+      console.log(this.from, this.to);
 
       const convertido = new ConversaoFinal(data.info.rate, data.date, data.result);
 
 
 
-      console.log(this.icon);
 
-      const valorEmitir = {
-        origem: this.from,
-        destino: this.to,
-        valor: this.valor,
-        rates: convertido.base,
-        resultado: convertido.resultado,
-        valorTrue: this.icon};
 
-      this.ultimoValor = valorEmitir;
 
-      this.TranferenciaService.adicionar(valorEmitir);
+      this.ConversorService.converter(new Conversao(this.from, 'USD', this.valor )).subscribe((data: any) => {
+        const dolarConvert = new ConversaoFinal(data.info.rate, data.date, data.result);
+
+        console.log(this.from, this.to);
+        console.log("isto é o dolarConvert", dolarConvert);
+
+        if(dolarConvert.resultado >= 10000){
+
+          this.icon = true;
+          console.log("entra no if");
+          console.log(this.icon);
+        } else {
+          this.icon = false;
+          console.log("entra no else");
+          console.log(this.icon);
+        }
+
+        console.log(this.from, this.to);
+
+
+        const valorEmitir = {
+          origem: this.from,
+          destino: this.to,
+          valor: this.valor,
+          rates: convertido.base,
+          resultado: convertido.resultado,
+          valorTrue: this.icon
+        };
+
+
+
+        this.TranferenciaService.adicionar(valorEmitir);
+
+
+      })
+
+
+
+
+      });
+
+
+
       this.limparCampos();
       this.openDialog();
 
-    })
+
+
 
 }
 
@@ -106,7 +121,7 @@ export class ConversorComponent {
 }
 
 openDialog(): void {
-  console.log(this.ultimoValor);
+
   const dialogRef = this.dialog.open(ModalRespostaComponent, {
 
   });
