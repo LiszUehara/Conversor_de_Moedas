@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ConversaoFinal } from 'src/app/conversor/conversor/models/conversao-final.model';
 import { Conversao } from 'src/app/conversor/conversor/models/conversao.model';
-import { TranferenciaService } from '../../conversor/services/tranferencia.service'
+import { TranferenciaService } from '../../conversor/services/transferencia.service'
 
 @Component({
   selector: 'app-modal-resposta',

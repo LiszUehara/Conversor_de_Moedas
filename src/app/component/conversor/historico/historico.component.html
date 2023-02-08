@@ -31,7 +31,10 @@
 
     <ng-container matColumnDef="Saida">
       <th mat-header-cell *matHeaderCellDef> Valor de Saida</th>
-      <td mat-cell *matCellDef="let historico">{{historico?.resultado}} </td>
+
+      <td mat-cell *matCellDef="let historico">
+
+        {{historico?.resultado}} </td>
     </ng-container>
 
 
@@ -39,6 +42,25 @@
     <ng-container matColumnDef="Taxa">
       <th mat-header-cell *matHeaderCellDef> Taxa </th>
       <td mat-cell *matCellDef="let historico">{{historico?.rates}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="Action">
+      <th mat-header-cell *matHeaderCellDef>Deletar</th>
+      <td mat-cell *matCellDef="let historico">
+      <button mat-icon-button color="primary" (click)="openDialog(historico)">
+        <mat-icon>delete</mat-icon>
+      </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Dolar">
+      <th mat-header-cell *matHeaderCellDef>Icon</th>
+      <td mat-cell *matCellDef="let historico">
+
+        <mat-icon *ngIf="historico?.valorTrue === true">sentiment_satisfied</mat-icon>
+
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

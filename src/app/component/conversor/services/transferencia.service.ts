@@ -29,4 +29,10 @@ export class TranferenciaService {
     return this.listarHistorico.lastIndexOf(this.historico);
    }
 
+   deletar(historico: any){
+
+      console.log("chamando service de deleter");
+
+   }
+
 }

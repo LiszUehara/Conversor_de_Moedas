@@ -16,12 +16,15 @@ import { ListarComponent } from './component/conversor/listar/listar.component';
 import { MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatIconModule} from '@angular/material/icon';
+import { ModalDeleteComponent } from './component/view/modal-delete/modal-delete.component';
 
 registerLocaleData(localePt, 'pt');
 @NgModule({
   declarations: [
     AppComponent,
     ListarComponent,
+    ModalDeleteComponent,
 
   ],
   imports: [
@@ -36,7 +39,8 @@ registerLocaleData(localePt, 'pt');
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'}

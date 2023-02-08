@@ -1,4 +1,4 @@
-import { TranferenciaService } from './services/tranferencia.service';
+import { TranferenciaService } from './services/transferencia.service';
 import { Moeda } from './../../conversor/conversor/models/moeda.models';
 import { ConversorService } from './services/conversor.service';
 import { ConversaoFinal } from './../../conversor/conversor/models/conversao-final.model';
@@ -14,10 +14,17 @@ import { ModalRespostaComponent } from '../view/modal-resposta/modal-resposta.co
   styleUrls: ['./conversor.component.css']
 })
 export class ConversorComponent {
-  [x: string]: any;
 
+  ultimoValor: any;
+  valor: number;
+  from: string = 'BRL';
+  to: string = 'USD';
+  moedasA: Moeda[] = [];
+  icon: boolean;
+  sig: string = 'USD';
 
-  @Output() aoConverter = new EventEmitter<any>();
+  conversao: Conversao;
+  conversaoFinal: ConversaoFinal;
 
   constructor(
     private ConversorService: ConversorService,
@@ -28,35 +35,64 @@ export class ConversorComponent {
     this.moedaService.getMoedas().subscribe((data: any) => {
       let elements: any[] = Object.values(data.symbols)
       elements.forEach(element => {
-        let novaMoeda = new Moeda(element.code,element.description)
+        let novaMoeda = new Moeda(element.code,element.description);
         this.moedasA.push(novaMoeda);
+        this.testarDolar();
       });
 });
+
+
+
+
+  }
+
+  testarDolar(){
+
+    this.ConversorService.converter(new Conversao(this.from, 'USD', this.valor )).subscribe((data: any) => {
+      const dolarConvert = new ConversaoFinal(data.info.rate, data.date, data.result);
+
+
+      console.log("isto é o dolarConvert", dolarConvert);
+
+      if(dolarConvert.resultado >= 10000){
+
+        this.icon = true;
+        console.log("entra no if");
+      } else {
+        this.icon = false;
+        console.log("entra no else");
+      }
+
+
+    });
   }
 
 
 
-  valor: number;
-  from: string = 'BRL';
-  to: string = 'USD';
-  moedasA: Moeda[] = [];
-  conversao: Conversao;
-  conversaoFinal: ConversaoFinal;
 
   enviarDados(){
     this.ConversorService.converter(new Conversao(this.from,this.to,this.valor)).subscribe((data: any) => {
-      const convertido = new ConversaoFinal(data.info.rate,data.date,data.result);
-      console.log(data);
-      console.log(convertido);
 
-      const valorEmitir = {origem: this.from, destino: this.to, valor: this.valor, rates: convertido.base, resultado: convertido.rates };
+      const convertido = new ConversaoFinal(data.info.rate, data.date, data.result);
+
+
+
+      console.log(this.icon);
+
+      const valorEmitir = {
+        origem: this.from,
+        destino: this.to,
+        valor: this.valor,
+        rates: convertido.base,
+        resultado: convertido.resultado,
+        valorTrue: this.icon};
+
+      this.ultimoValor = valorEmitir;
 
       this.TranferenciaService.adicionar(valorEmitir);
-
-
-
-      this.aoConverter.emit(valorEmitir);
       this.limparCampos();
+      this.openDialog();
+
     })
 
 }
@@ -70,6 +106,7 @@ export class ConversorComponent {
 }
 
 openDialog(): void {
+  console.log(this.ultimoValor);
   const dialogRef = this.dialog.open(ModalRespostaComponent, {
 
   });
@@ -79,6 +116,9 @@ openDialog(): void {
 
   });
 }
+
+
+
 }
 
 

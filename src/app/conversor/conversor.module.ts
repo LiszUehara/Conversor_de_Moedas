@@ -15,10 +15,11 @@ import { FormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MoedaService } from '../component/conversor/services/moedas.service';
 import { NumeroDirective } from './directives/numero.directive';
 import { PositivoDirective } from './directives/positivo.directive';
 import { ModalRespostaComponent } from '../component/view/modal-resposta/modal-resposta.component';
+import {MatIconModule} from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ModalRespostaComponent } from '../component/view/modal-resposta/modal-r
     FormsModule,
     MatTableModule,
     MatSelectModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatIconModule
 
   ],
   exports: [
@@ -52,7 +54,8 @@ import { ModalRespostaComponent } from '../component/view/modal-resposta/modal-r
     ConversorComponent,
     MatToolbarModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+
   ]
 })
 export class ConversorModule { }

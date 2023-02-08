@@ -1,9 +1,11 @@
+import { ModalDeleteComponent } from './../../view/modal-delete/modal-delete.component';
 import { Conversao } from './../../../conversor/conversor/models/conversao.model';
-import { TranferenciaService } from '../services/tranferencia.service';
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { TranferenciaService } from '../services/transferencia.service';
+import { Component, OnInit, AfterViewInit, ViewChild, Inject } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
+import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-historico',
@@ -13,10 +15,10 @@ import { MatSort, Sort } from '@angular/material/sort';
 export class HistoricoComponent implements OnInit, AfterViewInit {
   historico:any[];
 
-  displayedColumns: string[] = ['Data', 'Origem', 'Destino', 'Valor', 'Saida', 'Taxa'];
+  displayedColumns: string[] = ['Data', 'Origem', 'Destino', 'Valor', 'Saida', 'Taxa', 'Action', 'Dolar'];
   dataSource: MatTableDataSource<Conversao>;
 
-  constructor(private TranferenciaService: TranferenciaService){}
+  constructor(private TranferenciaService: TranferenciaService, public dialog: MatDialog){}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -38,6 +40,8 @@ export class HistoricoComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.historico = this.TranferenciaService.historico;
+    console.log(this.historico);
+
   }
 
 
@@ -52,7 +56,7 @@ export class HistoricoComponent implements OnInit, AfterViewInit {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
         case 'Origem':
-          return this.compare(a.origem, b.destino, isAsc);
+          return this.compare(a.origem, b.origem, isAsc);
         case 'Destino':
           return this.compare(a.destino, b.destino, isAsc);
         default:
@@ -64,6 +68,22 @@ export class HistoricoComponent implements OnInit, AfterViewInit {
   compare(a: number | string, b: number | string, isAsc: boolean) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
+
+  openDialog(historico): void {
+
+    console.log("chamando o service");
+    console.log(historico);
+    this.TranferenciaService.deletar(historico);
+    const dialogRef = this.dialog.open(ModalDeleteComponent, {
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+
+    });
+  }
+
 
 
 }
