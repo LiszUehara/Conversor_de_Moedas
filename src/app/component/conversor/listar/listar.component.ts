@@ -1,7 +1,7 @@
 import { Moeda } from './../../../conversor/conversor/models/moeda.models';
 import { Component, OnInit } from '@angular/core';
-import { MoedaService } from 'src/app/component/conversor/services/moedas.service';
-import {AfterViewInit, ViewChild} from '@angular/core';
+import { MoedaService } from '../services/moedas/moedas.service';
+import { ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -46,7 +46,7 @@ export class ListarComponent implements OnInit{
         this.sigla = element.code;
         this.descricao = element.description
         //console.log(this.sigla + '-' + this.descricao);
-        
+
         this.dataSource = new MatTableDataSource(this.listadeMoedas);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

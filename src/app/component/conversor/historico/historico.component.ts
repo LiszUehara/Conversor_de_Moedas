@@ -1,6 +1,6 @@
 import { ModalDeleteComponent } from './../../view/modal-delete/modal-delete.component';
 import { Conversao } from './../../../conversor/conversor/models/conversao.model';
-import { TranferenciaService } from '../services/transferencia.service';
+import { TranferenciaService } from '../../conversor/services/transferir-dados/transferencia.service';
 import { Component, OnInit, AfterViewInit, ViewChild, Inject } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -76,10 +76,10 @@ export class HistoricoComponent implements OnInit, AfterViewInit {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
-  openDialog(historico): void {
+  deletar(historico): void {
 
     console.log("chamando o service");
-    console.log(historico);
+    console.log(historico.id);
     this.TranferenciaService.deletar(historico);
     const dialogRef = this.dialog.open(ModalDeleteComponent, {
 

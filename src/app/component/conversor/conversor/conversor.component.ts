@@ -1,12 +1,13 @@
-import { TranferenciaService } from '../services/transferencia.service';
+import { TranferenciaService } from '../../conversor/services/transferir-dados/transferencia.service';
 import { Moeda } from '../../../conversor/conversor/models/moeda.models';
-import { ConversorService } from '../services/conversor.service';
+
 import { ConversaoFinal } from '../../../conversor/conversor/models/conversao-final.model';
 import { Conversao } from '../../../conversor/conversor/models/conversao.model';
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
-import { MoedaService } from 'src/app/component/conversor/services/moedas.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalRespostaComponent } from '../../view/modal-resposta/modal-resposta.component';
+import { ConversorService } from '../services/conversao/conversor.service';
+import { MoedaService } from '../services/moedas/moedas.service';
 
 @Component({
   selector: 'app-conversor',

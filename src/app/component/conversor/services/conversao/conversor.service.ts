@@ -1,11 +1,11 @@
-import { Conversao } from './../../../conversor/conversor/models/conversao.model';
+import { Conversao } from 'src/app/conversor/conversor/models/conversao.model';
 import { Observable } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 
-import { ConversaoFinal } from '../../../conversor/conversor/models/conversao-final.model';
+import { ConversaoFinal } from 'src/app/conversor/conversor/models/conversao-final.model';
 
 @Injectable({
   providedIn: 'root'

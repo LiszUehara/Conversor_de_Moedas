@@ -19,6 +19,8 @@ export class TranferenciaService {
     this.adicionarData(historico);
       this.listarHistorico.push(historico);
       sessionStorage.setItem("valorEmitir", JSON.stringify(this.listarHistorico));
+      console.log(this.historico);
+    console.log(historico.id);
    }
 
    private adicionarData(transferencia: any){
@@ -32,13 +34,16 @@ export class TranferenciaService {
    deletar(historico: any){
     let lista: any[] = JSON.parse(sessionStorage.getItem("valorEmitir") || "[]");
     lista = lista.filter( busca => {
-        return busca != historico;
+        return busca.id != historico.id;
     });
     sessionStorage.setItem("valorEmitir", JSON.stringify(lista));
-    console.log("123",lista);
+
+
+   console.log(this.historico);
+   console.log(historico.id);
+
       console.log("chamando service de deleter");
 
    }
-
 
 }

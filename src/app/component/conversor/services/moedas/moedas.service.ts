@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient  } from '@angular/common/http';
 import { map, Observable  } from 'rxjs';
-import { Moeda } from '../../../conversor/conversor/models/moeda.models';
+import { Moeda } from 'src/app/conversor/conversor/models/moeda.models';
 
 @Injectable({
   providedIn: 'root'
