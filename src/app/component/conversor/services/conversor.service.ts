@@ -1,9 +1,10 @@
+import { Conversao } from './../../../conversor/conversor/models/conversao.model';
 import { Observable } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Conversao } from '../../../conversor/conversor/models/conversao.model';
+
 import { ConversaoFinal } from '../../../conversor/conversor/models/conversao-final.model';
 
 @Injectable({
@@ -19,5 +20,8 @@ export class ConversorService {
     return this.http.get<ConversaoFinal>(conversaoResposta);
 
   }
+
+
+
 }
 

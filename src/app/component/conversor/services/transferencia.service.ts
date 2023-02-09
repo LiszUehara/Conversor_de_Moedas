@@ -8,7 +8,7 @@ export class TranferenciaService {
   private listarHistorico: any[];
 
   constructor() {
-    this.listarHistorico = [];
+    this.listarHistorico = JSON.parse(sessionStorage.getItem("valorEmitir") || "[]");
    }
 
    get historico(){
@@ -17,8 +17,8 @@ export class TranferenciaService {
 
    adicionar(historico: any){
     this.adicionarData(historico);
-    this.listarHistorico.push(historico);
-
+      this.listarHistorico.push(historico);
+      sessionStorage.setItem("valorEmitir", JSON.stringify(this.listarHistorico));
    }
 
    private adicionarData(transferencia: any){
@@ -30,9 +30,15 @@ export class TranferenciaService {
    }
 
    deletar(historico: any){
-
+    let lista: any[] = JSON.parse(sessionStorage.getItem("valorEmitir") || "[]");
+    lista = lista.filter( busca => {
+        return busca != historico;
+    });
+    sessionStorage.setItem("valorEmitir", JSON.stringify(lista));
+    console.log("123",lista);
       console.log("chamando service de deleter");
 
    }
+
 
 }

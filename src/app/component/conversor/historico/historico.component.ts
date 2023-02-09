@@ -14,7 +14,7 @@ import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog
 })
 export class HistoricoComponent implements OnInit, AfterViewInit {
   historico:any[];
-  icon: any;
+
 
   displayedColumns: string[] = ['Data', 'Origem', 'Destino', 'Valor', 'Saida', 'Taxa', 'Action', 'Dolar'];
   dataSource: MatTableDataSource<Conversao>;
@@ -40,10 +40,12 @@ export class HistoricoComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
-    this.historico = this.TranferenciaService.historico;
-    this.icon = this.TranferenciaService.historico;
-    
+    this.historico = JSON.parse(sessionStorage.getItem("valorEmitir"))
+    //this.TranferenciaService.historico;
+
+
     console.log(this.historico);
+
 
   }
 
