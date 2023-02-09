@@ -10,7 +10,7 @@ import { FooterComponent } from '../component/view/footer/footer.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { ConversorComponent } from '../component/conversor/conversor.component';
+import { ConversorComponent } from '../component/conversor/conversor/conversor.component';
 import { FormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';

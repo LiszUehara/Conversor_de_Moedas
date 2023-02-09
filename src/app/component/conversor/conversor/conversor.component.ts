@@ -1,12 +1,12 @@
-import { TranferenciaService } from './services/transferencia.service';
-import { Moeda } from './../../conversor/conversor/models/moeda.models';
-import { ConversorService } from './services/conversor.service';
-import { ConversaoFinal } from './../../conversor/conversor/models/conversao-final.model';
-import { Conversao } from './../../conversor/conversor/models/conversao.model';
+import { TranferenciaService } from '../services/transferencia.service';
+import { Moeda } from '../../../conversor/conversor/models/moeda.models';
+import { ConversorService } from '../services/conversor.service';
+import { ConversaoFinal } from '../../../conversor/conversor/models/conversao-final.model';
+import { Conversao } from '../../../conversor/conversor/models/conversao.model';
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { MoedaService } from 'src/app/component/conversor/services/moedas.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalRespostaComponent } from '../view/modal-resposta/modal-resposta.component';
+import { ModalRespostaComponent } from '../../view/modal-resposta/modal-resposta.component';
 
 @Component({
   selector: 'app-conversor',
@@ -15,7 +15,7 @@ import { ModalRespostaComponent } from '../view/modal-resposta/modal-resposta.co
 })
 export class ConversorComponent implements OnInit{
 
-  ultimoValor: any;
+
   valor: number;
   from: string = 'BRL';
   to: string = 'USD';
@@ -23,6 +23,7 @@ export class ConversorComponent implements OnInit{
   conversao: Conversao;
   conversaoFinal: ConversaoFinal;
   icon: boolean = true;
+  id: number = 0;
 
   constructor(
     private ConversorService: ConversorService,
@@ -53,6 +54,7 @@ export class ConversorComponent implements OnInit{
     salvarDados(){
       this.conversordeDolar();
       this.enviarDados();
+      this.adicionaId();
     }
 
   enviarDados(){
@@ -67,14 +69,16 @@ export class ConversorComponent implements OnInit{
         valor: this.valor,
         rates: convertido.base,
         resultado: convertido.resultado,
-        valorTrue: this.icon
+        valorTrue: this.icon,
+        id: this.id
         };
 
-      this.ultimoValor = valorEmitir;
+
 
       this.TranferenciaService.adicionar(valorEmitir);
       this.limparCampos();
       this.openDialog();
+      console.log(valorEmitir);
 
     })
 
@@ -85,11 +89,10 @@ export class ConversorComponent implements OnInit{
   limparCampos() {
     this.from = "";
     this.to = "";
-    this.conversao.valor = 0;
+    this.valor = 0;
 }
 
 openDialog(): void {
-  console.log(this.ultimoValor);
   const dialogRef = this.dialog.open(ModalRespostaComponent, {
 
   });
@@ -116,6 +119,20 @@ conversordeDolar(){
 
   return this.icon;
 }
+
+adicionaId(){
+  let contador = this.TranferenciaService.historico.length;
+  console.log(contador);
+  if(contador >= 0){
+    this.id = (contador) + 1;
+    return this.id;
+  }
+
+  console.log(this.id);
+  return 0;
+
+}
+
 
 
 }

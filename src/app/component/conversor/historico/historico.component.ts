@@ -19,7 +19,10 @@ export class HistoricoComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['Data', 'Origem', 'Destino', 'Valor', 'Saida', 'Taxa', 'Action', 'Dolar'];
   dataSource: MatTableDataSource<Conversao>;
 
-  constructor(private TranferenciaService: TranferenciaService, public dialog: MatDialog){}
+  constructor(
+    private TranferenciaService: TranferenciaService,
+    public dialog: MatDialog
+    ){}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -44,7 +47,6 @@ export class HistoricoComponent implements OnInit, AfterViewInit {
     //this.TranferenciaService.historico;
 
 
-    console.log(this.historico);
 
 
   }

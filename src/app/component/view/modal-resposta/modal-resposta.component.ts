@@ -26,7 +26,6 @@ export class ModalRespostaComponent implements OnInit{
 
   ngOnInit(): void {
     this.resultados = this.TranferenciaService.historico;
-    console.log(this.resultados);
   }
 
 
