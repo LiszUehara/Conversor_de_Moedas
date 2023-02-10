@@ -16,7 +16,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { NumeroDirective } from './directives/numero.directive';
-import { PositivoDirective } from './directives/positivo.directive';
+import { ApenasNumeroDirective } from './directives/positivo.directive';
 import { ModalRespostaComponent } from '../component/view/modal-resposta/modal-resposta.component';
 import {MatIconModule} from '@angular/material/icon';
 
@@ -29,7 +29,7 @@ import {MatIconModule} from '@angular/material/icon';
     FooterComponent,
     ConversorComponent,
     NumeroDirective,
-    PositivoDirective,
+    ApenasNumeroDirective,
     ModalRespostaComponent,
 
   ],

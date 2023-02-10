@@ -1,6 +1,7 @@
 import { TranferenciaService } from '../../conversor/services/transferir-dados/transferencia.service';
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal-delete',
@@ -14,8 +15,18 @@ export class ModalDeleteComponent {
 
   constructor(
     public dialogRef: MatDialogRef<ModalDeleteComponent>,
-    private TranferenciaService: TranferenciaService
+    private TranferenciaService: TranferenciaService,
+    private router: Router,
+    private route: ActivatedRoute,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
+
+
+
+
+  ngOnInit(){
+
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -23,8 +34,9 @@ export class ModalDeleteComponent {
   }
 
 
-  deletar(historico): void{
-    this.TranferenciaService.deletar(historico);
+  deletar(): void{
+    this.TranferenciaService.deletar(this.data.historico);
+    this.dialogRef.close();
   }
 }
 

@@ -28,6 +28,7 @@ export class HistoricoComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   ngAfterViewInit() {
+    this.dataSource = new MatTableDataSource(this.historico);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -45,10 +46,6 @@ export class HistoricoComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.historico = JSON.parse(sessionStorage.getItem("valorEmitir"))
     //this.TranferenciaService.historico;
-
-
-
-
   }
 
 
@@ -78,16 +75,14 @@ export class HistoricoComponent implements OnInit, AfterViewInit {
 
   deletar(historico): void {
 
-    console.log("chamando o service");
-    console.log(historico.id);
-    this.TranferenciaService.deletar(historico);
+    this.TranferenciaService.deletar(historico.id);
     const dialogRef = this.dialog.open(ModalDeleteComponent, {
-
+      data: {historico}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-
+      this.historico = JSON.parse(sessionStorage.getItem("valorEmitir"))
+      this.dataSource.data = [...this.historico]
     });
   }
 

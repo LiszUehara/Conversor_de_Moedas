@@ -16,34 +16,32 @@ export class TranferenciaService {
    }
 
    adicionar(historico: any){
-    this.adicionarData(historico);
+      this.adicionarData(historico);
       this.listarHistorico.push(historico);
       sessionStorage.setItem("valorEmitir", JSON.stringify(this.listarHistorico));
+
       console.log(this.historico);
-    console.log(historico.id);
+      console.log(historico.id);
+      console.log(historico);
    }
 
    private adicionarData(transferencia: any){
     transferencia.data = new Date();
    }
 
-   recuperar(){
-    return this.listarHistorico.lastIndexOf(this.historico);
+
+
+    deletar(paraApagar: any){
+      console.log("meuId",paraApagar.id);
+      this.listarHistorico = this.historico.filter( busca => {
+          return busca.id != paraApagar.id;
+
+      });
+      sessionStorage.setItem("valorEmitir", JSON.stringify(this.listarHistorico));
+
+     }
    }
 
-   deletar(historico: any){
-    let lista: any[] = JSON.parse(sessionStorage.getItem("valorEmitir") || "[]");
-    lista = lista.filter( busca => {
-        return busca.id != historico.id;
-    });
-    sessionStorage.setItem("valorEmitir", JSON.stringify(lista));
 
 
-   console.log(this.historico);
-   console.log(historico.id);
 
-      console.log("chamando service de deleter");
-
-   }
-
-}

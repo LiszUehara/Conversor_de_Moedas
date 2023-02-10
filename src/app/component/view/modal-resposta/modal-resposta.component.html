@@ -4,14 +4,11 @@
 
 
 
-  <div  *ngFor="let item of resultados">
+  <div *ngIf="data.valorEmitir">
 
-    <h1>O valor de: {{item?.valor}} da moeda {{item?.origem}} para {{item?.destino}}<br> equivale à {{item?.resultado}}<br> cotação {{item?.rates}} </h1>
+    <h1>O valor de: {{data.valorEmitir?.valor}} da moeda {{data.valorEmitir?.origem}} para {{data.valorEmitir?.destino}}<br> equivale à {{data.valorEmitir?.resultado}}<br> cotação {{data.valorEmitir?.rates}} </h1>
 
     </div>
-
-
-
 <div mat-dialog-actions>
   <button mat-button (click)="cancelar()">Fechar</button>
 </div>

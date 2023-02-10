@@ -1,51 +1,24 @@
-import { Directive, HostListener, ElementRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Directive, ElementRef, HostListener } from "@angular/core";
 
 @Directive({
-  selector: '[appPositivo]',
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: PositivoDirective,
-    multi: true
-  }]
+  selector: '[apenasNumero]'
 })
-export class PositivoDirective  implements ControlValueAccessor{
+export class ApenasNumeroDirective {
 
-  onTouched: any;
-  onChange: any;
+  private regex: RegExp = new RegExp(/^-?[0-9]+(\.[0-9]*){0,1}$/g);
+  private specialKeys: Array<string> = ['Backspace', 'Tab'];
 
-  constructor(private el: ElementRef) { }
-
-
-  @HostListener('keyup', ['$event'])onKeyUp($event: any){
-    let valor = $event.target.value;
-
-    valor = valor.replace(/^-?[0-9][0-9]*/gm, '0');
-    if(valor < 0){
-      console.log("valor menor");
+  constructor(private el: ElementRef) {
+  }
+  @HostListener('keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent) {
+    if (this.specialKeys.indexOf(event.key) !== -1) {
+      return;
     }
-
-
-
-
-
-    $event.target.value = valor;
-    this.onChange(valor);
-  }
-
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
-
-  writeValue(value: any): void{
-    this.el.nativeElement.value = value;
+    const current: string = this.el.nativeElement.value;
+    const next: string = current.concat(event.key);
+    if (next && !String(next).match(this.regex)) {
+      event.preventDefault();
+    }
   }
 }
-
-
-
-

@@ -78,7 +78,7 @@ export class ConversorComponent implements OnInit{
 
       this.TranferenciaService.adicionar(valorEmitir);
       this.limparCampos();
-      this.openDialog();
+      this.openDialog(valorEmitir);
       console.log(valorEmitir);
 
     })
@@ -93,9 +93,9 @@ export class ConversorComponent implements OnInit{
     this.valor = 0;
 }
 
-openDialog(): void {
+openDialog(valorEmitir:any): void {
   const dialogRef = this.dialog.open(ModalRespostaComponent, {
-
+    data: {valorEmitir}
   });
 
   dialogRef.afterClosed().subscribe(result => {
