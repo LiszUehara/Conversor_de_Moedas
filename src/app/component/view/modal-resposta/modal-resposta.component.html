@@ -1,16 +1,16 @@
 
-<h1 mat-dialog-title>Resultado</h1>
+<h1 class="titulo" mat-dialog-title>Resultado</h1>
 <div mat-dialog-content class="container">
 
 
 
-  <div *ngIf="data.valorEmitir">
+  <div class="container-dialog" *ngIf="data.valorEmitir">
 
-    <h1>O valor de: {{data.valorEmitir?.valor}} da moeda {{data.valorEmitir?.origem}} para {{data.valorEmitir?.destino}}<br> equivale à {{data.valorEmitir?.resultado}}<br> cotação {{data.valorEmitir?.rates}} </h1>
+    <h1 class="titulo">O valor de: {{data.valorEmitir?.valor}} da moeda {{data.valorEmitir?.origem}} para {{data.valorEmitir?.destino}} equivale à {{data.valorEmitir?.resultado}} cotação {{data.valorEmitir?.rates}} </h1>
 
     </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="cancelar()">Fechar</button>
+<div class="btn-div" mat-dialog-actions>
+  <button class="btn" mat-button (click)="cancelar()">Fechar</button>
 </div>
 
 

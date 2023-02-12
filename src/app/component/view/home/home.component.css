@@ -1,17 +1,14 @@
 .container{
   width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+  height: auto;
   text-align: center;
   background-color: #000000;
-  justify-content: center;
-  align-items: center;
+  margin-top: 90px;
+  margin-bottom: 90px;
 }
 
 .titulo{
   font-size: 4rem;
-  padding: 80px;
   line-height: 50px;
   color:  #c2185b;
 

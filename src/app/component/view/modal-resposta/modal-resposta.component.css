@@ -1,4 +1,11 @@
 .container{
-  width: 50%;
-  height: 50%;
+  width: auto;
+  height: auto;
 }
+
+.titulo, .container-dialog{
+  text-align: center;
+  color: #fff;
+  margin-top: 20px;
+}
+
