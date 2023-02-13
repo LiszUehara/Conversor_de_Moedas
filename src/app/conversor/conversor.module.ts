@@ -1,3 +1,4 @@
+import { MatSortModule } from '@angular/material/sort';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -42,6 +43,7 @@ import {MatIconModule} from '@angular/material/icon';
     FormsModule,
     MatTableModule,
     MatSelectModule,
+    MatSortModule,
     MatPaginatorModule,
     MatIconModule
 

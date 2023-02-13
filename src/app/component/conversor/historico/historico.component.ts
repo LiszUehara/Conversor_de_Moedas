@@ -4,7 +4,7 @@ import { TranferenciaService } from '../../conversor/services/transferir-dados/t
 import { Component, OnInit, AfterViewInit, ViewChild, Inject } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSort, Sort } from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
@@ -13,22 +13,21 @@ import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog
   styleUrls: ['./historico.component.css']
 })
 export class HistoricoComponent implements OnInit, AfterViewInit {
-  historico:any[];
+  historico:any[] =[];
 
 
-  displayedColumns: string[] = ['Data', 'Origem', 'Destino', 'Valor', 'Saida', 'Taxa', 'Action', 'Dolar'];
-  dataSource: MatTableDataSource<Conversao>;
+  displayedColumns: string[] = ['data', 'origem', 'destino', 'valor', 'saida', 'taxa', 'action', 'icon'];
+  dataSource: MatTableDataSource<any>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     private TranferenciaService: TranferenciaService,
     public dialog: MatDialog
     ){}
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-
   ngAfterViewInit() {
-    this.dataSource = new MatTableDataSource(this.historico);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -44,33 +43,15 @@ export class HistoricoComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
-    this.historico = JSON.parse(sessionStorage.getItem("valorEmitir"))
+    //this.listarHistorico();
     //this.TranferenciaService.historico;
+    this.listarHistorico();
   }
 
+  private listarHistorico() {
+    this.historico = JSON.parse(sessionStorage.getItem("valorEmitir"));
 
-  sortData(sort: Sort) {
-    const data = this.historico.slice();
-    if (!sort.active || sort.direction === '') {
-      this.historico = data;
-      return;
-    }
-
-    this.historico = data.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      switch (sort.active) {
-        case 'Origem':
-          return this.compare(a.origem, b.origem, isAsc);
-        case 'Destino':
-          return this.compare(a.destino, b.destino, isAsc);
-        default:
-          return 0;
-      }
-    });
-  }
-
-  compare(a: number | string, b: number | string, isAsc: boolean) {
-    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+    this.dataSource = new MatTableDataSource(this.historico);
   }
 
   deletar(historico): void {

@@ -1,9 +1,9 @@
 import { Moeda } from './../../../conversor/conversor/models/moeda.models';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { MoedaService } from '../services/moedas/moedas.service';
 import { ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
-import {MatSort, Sort} from '@angular/material/sort';
+import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
@@ -19,7 +19,7 @@ export class ListarComponent implements OnInit{
   listadeMoedas: Moeda[] = [];
   moedas: any[] = [];
 
-  displayedColumns: string[] = ['Sigla', 'Descricao'];
+  displayedColumns: string[] = ['sigla', 'descricao'];
   dataSource: MatTableDataSource<Moeda>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -29,12 +29,10 @@ export class ListarComponent implements OnInit{
   constructor(
     private moedaService: MoedaService
   ){
-
   }
 
   ngOnInit(): void{
     this.listarMoedas();
-    console.log(this.listadeMoedas)
   }
 
   listarMoedas(){
@@ -45,12 +43,10 @@ export class ListarComponent implements OnInit{
         this.listadeMoedas.push(novaMoeda);
         this.sigla = element.code;
         this.descricao = element.description
-        //console.log(this.sigla + '-' + this.descricao);
-
-        this.dataSource = new MatTableDataSource(this.listadeMoedas);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
       });
+      this.dataSource = new MatTableDataSource(this.listadeMoedas);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
 });
 }
 
@@ -64,33 +60,5 @@ applyFilter(event: Event) {
   }
 }
 
-sortData(sort: Sort) {
-  const data = this.listadeMoedas.slice();
-  if (!sort.active || sort.direction === '') {
-    this.listadeMoedas = data;
-    return;
-  }
-
-  this.listadeMoedas = data.sort((a, b) => {
-    const isAsc = sort.direction === 'asc';
-    switch (sort.active) {
-      case 'sigla':
-        return this.compare(a.sigla, b.sigla, isAsc);
-      case 'descricao':
-        return this.compare(a.descricao, b.descricao, isAsc);
-      default:
-        return 0;
-    }
-  });
-}
-
-compare(a: number | string, b: number | string, isAsc: boolean) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-}
 
 }
-
-
-
-
-
